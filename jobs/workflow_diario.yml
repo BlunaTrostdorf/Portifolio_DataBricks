@@ -1,0 +1,10 @@
+# Exemplo do que aquele arquivo .yml faz por baixo dos panos:
+name: Job_CRM_Salesforce_Diario
+schedule:
+  quartz_cron_expression: "0 0 3 * * ?"
+tasks:
+  - task_key: 1_Ingestao_Bronze
+    notebook_path: src/01_ingest_bronze
+  - task_key: 2_Tratamento_Silver
+    depends_on: [1_Ingestao_Bronze]
+    notebook_path: src/02_bronze_to_silver
